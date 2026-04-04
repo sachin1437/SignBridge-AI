@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignBridge AI - Recognition Tool</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="app-page">
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <span class="logo-sign">Sign</span><span class="logo-bridge">Bridge</span><span class="logo-ai"> AI</span>
+            </a>
+            <div class="header-actions">
+                <a href="/" class="btn btn-nav">Back to Home</a>
+                <span class="status-badge" id="status-badge">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App -->
+    <main class="app-main">
+        <div class="app-container">
+            <!-- Left Column - Camera -->
+            <section class="camera-section">
+                <div class="section-header">
+                    <h2 class="section-title">Camera Feed</h2>
+                </div>
+                
+                <div class="camera-wrapper" id="camera-wrapper">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display:none;"></canvas>
+                    <div class="camera-overlay" id="camera-overlay">
+                        <div class="overlay-content">
+                            <svg class="overlay-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="8" y="16" width="48" height="32" rx="4"/>
+                                <circle cx="32" cy="32" r="10"/>
+                                <circle cx="32" cy="32" r="4" fill="currentColor"/>
+                            </svg>
+                            <p>Click "Start Camera" to begin</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="camera-controls">
+                    <button class="btn btn-primary" id="btn-start">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        Start Camera
+                    </button>
+                    <button class="btn btn-danger" id="btn-stop" disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="6" width="12" height="12"/>
+                        </svg>
+                        Stop
+                    </button>
+                </div>
+                
+                <div class="prediction-box">
+                    <span class="prediction-label">Detected Gesture</span>
+                    <span class="prediction-text" id="prediction-text">—</span>
+                    <div class="confidence-bar-wrap">
+                        <div class="confidence-bar" id="confidence-bar"></div>
+                    </div>
+                    <span class="confidence-value" id="confidence-value">0%</span>
+                </div>
+            </section>
+
+            <!-- Right Column - Sentence Builder -->
+            <section class="builder-section">
+                <div class="section-header">
+                    <h2 class="section-title">Sentence Builder</h2>
+                </div>
+                
+                <div class="sentence-display" id="sentence-display">
+                    <span class="placeholder-text">Your sentence will appear here...</span>
+                </div>
+                
+                <div class="word-controls">
+                    <button class="btn btn-secondary" id="btn-add-word">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5 L12 19 M5 12 L19 12"/>
+                        </svg>
+                        Add Word
+                    </button>
+                    <button class="btn btn-secondary" id="btn-add-space">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12 L20 12"/>
+                        </svg>
+                        Add Space
+                    </button>
+                    <button class="btn btn-secondary" id="btn-delete-word">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 5 L9 12 L20 19"/>
+                        </svg>
+                        Delete Last
+                    </button>
+                    <button class="btn btn-danger" id="btn-clear">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6 L5 6 L21 6 M19 6 L19 20 Q19 22 17 22 L7 22 Q5 22 5 20 L5 6 M10 11 L10 17 M14 11 L14 17"/>
+                        </svg>
+                        Clear All
+                    </button>
+                </div>
+                
+                <button class="btn btn-speak" id="btn-speak">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M15.54 8.46 Q19 12 15.54 15.54"/>
+                        <path d="M19.07 4.93 Q24 12 19.07 19.07"/>
+                    </svg>
+                    Speak Sentence
+                </button>
+                
+                <div class="history-box">
+                    <span class="history-title">Recent Gestures</span>
+                    <div class="history-list" id="history-list">
+                        <!-- History tags will be added here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
