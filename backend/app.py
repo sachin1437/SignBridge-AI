@@ -82,6 +82,27 @@ def speak_text():
     speak(text)
     return jsonify({'status': 'speaking', 'text': text})
 
+
+@app.route('/construct', methods=['POST'])
+def construct():
+    # Receives list of gesture words and returns a natural sentence
+    data = request.get_json()
+
+    if not data or 'words' not in data:
+        return jsonify({'error': 'No words provided'}), 400
+
+    words = data['words']
+    if not words:
+        return jsonify({'error': 'Empty word list'}), 400
+
+    from sentence_builder import construct_sentence
+    sentence = construct_sentence(words)
+
+    # Also speak it automatically
+    speak(sentence)
+
+    return jsonify({'sentence': sentence})
+
 if __name__ == '__main__':
     print("Loading model...")
     load_model()

@@ -23,6 +23,7 @@ classes     = None
 def load_model():
     global keras_model, classes
 
+    # Load gesture class names
     if os.path.exists(CLASSES_PATH):
         classes = np.load(CLASSES_PATH, allow_pickle=True)
         print(f"[Predictor] Classes loaded: {list(classes)}")
@@ -33,11 +34,12 @@ def load_model():
             'No_Gesture', 'Ok', 'Perfect', 'Please', 'Sit',
             'Stand_Up', 'Stop', 'Yes', 'You'
         ])
-        print("[Predictor] Model not trained yet — using placeholder classes")
+        print("[Predictor] classes.npy not found — using placeholder classes")
 
-    # TODO: uncomment once model.h5 is ready
-    # from tensorflow.keras.models import load_model as keras_load
-    # keras_model = keras_load(os.path.join(MODEL_DIR, 'model.h5'))
+    # Load trained model
+    from tensorflow.keras.models import load_model as keras_load
+    keras_model = keras_load(os.path.join(MODEL_DIR, 'model.h5'))
+    print("[Predictor] Model loaded successfully!")
 
 
 def get_landmarker():
@@ -73,15 +75,9 @@ def predict(frame):
     normalized = normalize_landmarks(raw)
     input_data = normalized.reshape(1, -1)
 
-    # ── PLACEHOLDER ──
-    gesture    = "Hello"
-    confidence = 0.99
-    # ─────────────────
-
-    # TODO: uncomment once model.h5 is ready
-    # predictions = keras_model.predict(input_data, verbose=0)[0]
-    # idx         = np.argmax(predictions)
-    # confidence  = float(predictions[idx])
-    # gesture     = classes[idx] if confidence >= CONFIDENCE_THRESHOLD else "No_Gesture"
+    predictions = keras_model.predict(input_data, verbose=0)[0]
+    idx         = np.argmax(predictions)
+    confidence  = float(predictions[idx])
+    gesture     = classes[idx] if confidence >= CONFIDENCE_THRESHOLD else "No_Gesture"
 
     return gesture, confidence, frame

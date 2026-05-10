@@ -7,3 +7,5 @@ pandas
 flask
 flask-cors
 pyttsx3
+groq
+python-dotenv
