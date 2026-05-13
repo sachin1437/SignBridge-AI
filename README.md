@@ -15,9 +15,6 @@
 
 > *A software-only, privacy-preserving ISL recognition framework that bridges the communication gap for 63 million hearing-impaired Indians.*
 
-<br/>
-
-![SignBridge Banner](assets/banner.png)
 
 </div>
 
@@ -73,9 +70,9 @@ This makes it **privacy-preserving, hardware-light, and deployable** in real-wor
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    SignBridge Pipeline                   │
+│                    SignBridge Pipeline                  │
 │                                                         │
-│  📷 Webcam Input (720p @ 30 FPS)                        │
+│  📷 Webcam Input (720p @ 30 FPS)                        | 
 │          │                                              │
 │          ▼                                              │
 │  🦴 MediaPipe Holistic                                  │
