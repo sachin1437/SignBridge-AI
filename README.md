@@ -122,7 +122,7 @@ Custom ISL dataset collected using standard 720p RGB webcam:
 Classes with perfect recall: `Call_me`, `I_Hate_You`, `I_Love_You`, `Me`, `Perfect`, `You`
 
 ---
-
+```bash
 ## Project Structure
 SignBridgeAI/
 ├── app.py                  # Real-time inference
@@ -136,7 +136,7 @@ SignBridgeAI/
 │   ├── landmark_utils.py   # MediaPipe extraction
 │   └── augmentation.py     # Data augmentation
 └── requirements.txt
-
+```
 ---
 
 ## Tech Stack
@@ -176,4 +176,3 @@ This project is licensed under the MIT License.
 ## Acknowledgments
 
 School of Computer Applications, Lovely Professional University, for institutional support. All volunteers who contributed gesture recordings to the dataset.
-```
