@@ -7,9 +7,8 @@
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org)
 [![MediaPipe](https://img.shields.io/badge/MediaPipe-0.10-00897B?style=for-the-badge&logo=google&logoColor=white)](https://mediapipe.dev)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge)](LICENSE)
 [![Accuracy](https://img.shields.io/badge/Accuracy-90.6%25-brightgreen?style=for-the-badge)]()
-[![LPU](https://img.shields.io/badge/LPU-Research-orange?style=for-the-badge)]()
 
 <br/>
 
@@ -69,34 +68,30 @@ This makes it **privacy-preserving, hardware-light, and deployable** in real-wor
 ## 🏗️ System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    SignBridge Pipeline                  │
-│                                                         │
-│  📷 Webcam Input (720p @ 30 FPS)                        | 
-│          │                                              │
-│          ▼                                              │
-│  🦴 MediaPipe Holistic                                  │
-│     • 21 hand landmarks (×2)                           │
-│     • 33 pose landmarks                                 │
-│     → 258-dim feature vector per frame                  │
-│          │                                              │
-│          ▼                                              │
-│  📦 Sequence Buffer (30 frames)                         │
-│          │                                              │
-│          ▼                                              │
-│  🧠 BiLSTM Classifier (808K params)                     │
-│     • 2× Bidirectional LSTM (128 units)                 │
-│     • Dropout (0.3) + Dense layers                      │
-│          │                                              │
-│          ▼                                              │
-│  🎯 Confidence Gate (τ = 0.7)                           │
-│          │                                              │
-│          ▼                                              │
-│  🗳️ Temporal Voting Buffer (5 frames)                   │
-│          │                                              │
-│          ▼                                              │
-│  🔊 Text-to-Speech Output (pyttsx3)                     │
-└─────────────────────────────────────────────────────────┘
+📷 Webcam Input (720p @ 30 FPS)
+         │
+         ▼
+🦴 MediaPipe Holistic
+   • 21 hand landmarks (×2)
+   • 33 pose landmarks
+   → 258-dim feature vector per frame
+         │
+         ▼
+📦 Sequence Buffer (30 frames)
+         │
+         ▼
+🧠 BiLSTM Classifier (808K params)
+   • 2× Bidirectional LSTM (128 units)
+   • Dropout (0.3) + Dense layers
+         │
+         ▼
+🎯 Confidence Gate (τ = 0.7)
+         │
+         ▼
+🗳️ Temporal Voting Buffer (5 frames)
+         │
+         ▼
+🔊 Text-to-Speech Output (pyttsx3)
 ```
 
 ---
@@ -204,13 +199,6 @@ Custom ISL dataset recorded with a standard 720p RGB webcam across multiple sign
 | LSTM (unidirectional) | 87.4% | 0.866 | 0.42M |
 | **BiLSTM (proposed)** | **90.6%** | **0.901** | **0.81M** |
 
-### Training Curves
-
-![Training History](training_history.png)
-
-### Confusion Matrix
-
-![Confusion Matrix](confusion_matrix.png)
 
 ### Per-Class Highlights
 
@@ -314,7 +302,7 @@ SignBridge is a product of **[NetraaLabs](https://netraalabs.netlify.app)** — 
 
 ## 📜 License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+This project is licensed under the **Apache 2.0 License** — see [LICENSE](LICENSE) for details.
 
 ---
 
