@@ -1,4 +1,3 @@
-```bash
 # SignBridge 🤟
 
 **Real-Time Indian Sign Language Recognition for Assistive Communication**
